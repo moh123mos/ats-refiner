@@ -221,7 +221,7 @@
       </div>
 
       <!-- Resume Preview Section -->
-      <div class="animate-fade-in-up delay-300">
+      <!-- <div class="animate-fade-in-up delay-300">
         <div class="flex items-center gap-3 mb-5">
           <div
             class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center"
@@ -239,7 +239,7 @@
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
           <ResumePreview :resume="store.analysis.structuredResume" />
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
