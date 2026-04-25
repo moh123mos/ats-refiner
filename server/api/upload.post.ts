@@ -102,6 +102,7 @@ export default defineEventHandler(async (event) => {
     updateSession(sessionId, {
       rawText: cleanedText,
       normalizedText: cleanedText,
+      originalResumeText: cleanedText,
       status: 'ready'
     })
 
@@ -112,7 +113,8 @@ export default defineEventHandler(async (event) => {
         sessionId,
         fileName: file.filename,
         fileType,
-        textLength: cleanedText.length
+        textLength: cleanedText.length,
+        text: cleanedText
       }
     } as UploadResponse
   } catch (error) {

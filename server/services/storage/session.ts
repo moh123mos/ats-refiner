@@ -17,6 +17,7 @@ export function createSession(sessionId: string, fileName: string, fileType: 'pd
     fileType,
     rawText: '',
     normalizedText: '',
+    originalResumeText: '',
     jobDescription: '',
     analysis: null,
     createdAt: now,

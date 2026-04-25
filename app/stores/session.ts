@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { SessionStatus, AnalysisResult, TemplateId } from '~/types'
+import type { SessionStatus, AnalysisResult } from '~/types'
 
 interface StoreError {
   message: string
@@ -15,10 +15,11 @@ interface SessionStoreState {
   fileType: 'pdf' | 'docx'
   rawText: string
   normalizedText: string
+  originalResumeText: string
   jobDescription: string
   analysis: AnalysisResult | null
   error: StoreError | null
-  activeTemplate: TemplateId
+  activeTemplate: string
 }
 
 export const useSessionStore = defineStore('session', {
@@ -29,6 +30,7 @@ export const useSessionStore = defineStore('session', {
     fileType: 'pdf',
     rawText: '',
     normalizedText: '',
+    originalResumeText: '',
     jobDescription: '',
     analysis: null,
     error: null,
@@ -67,7 +69,11 @@ export const useSessionStore = defineStore('session', {
       this.status = 'ready'
     },
 
-    setActiveTemplate(templateId: TemplateId) {
+    setOriginalResumeText(text: string) {
+      this.originalResumeText = text
+    },
+
+    setActiveTemplate(templateId: string) {
       this.activeTemplate = templateId
     },
 
@@ -78,6 +84,7 @@ export const useSessionStore = defineStore('session', {
       this.fileType = 'pdf'
       this.rawText = ''
       this.normalizedText = ''
+      this.originalResumeText = ''
       this.jobDescription = ''
       this.analysis = null
       this.error = null

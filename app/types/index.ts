@@ -7,6 +7,7 @@ export interface SessionState {
   fileType: 'pdf' | 'docx'
   rawText: string
   normalizedText: string
+  originalResumeText: string
   jobDescription: string
   analysis: AnalysisResult | null
   createdAt: string
@@ -88,6 +89,7 @@ export interface UploadResponse {
     fileName: string
     fileType: 'pdf' | 'docx'
     textLength: number
+    text: string
   } | null
   errorCode?: string
   details?: ApiErrorDetails
@@ -133,11 +135,19 @@ export interface ApiErrorResponse {
   details?: ApiErrorDetails
 }
 
-export type TemplateId = 'classic' | 'modern' | 'minimal' | 'executive' | 'creative'
-
 export interface TemplateInfo {
-  id: TemplateId
+  id: string
   name: string
-  description: string
   icon: string
+  description: string
+}
+
+export interface Html2PdfOptions {
+  margin?: number | number[]
+  filename?: string
+  image?: { type?: string, quality?: number }
+  html2canvas?: Record<string, unknown>
+  jsPDF?: Record<string, unknown>
+  pagebreak?: { mode?: string | string[] }
+  enableLinks?: boolean
 }

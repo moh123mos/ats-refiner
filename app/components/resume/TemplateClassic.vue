@@ -1,7 +1,7 @@
 <template>
   <div
-    class="resume-template bg-white p-8 max-w-[210mm] mx-auto shadow-lg rounded-xl"
     id="resume-content"
+    class="resume-template bg-white p-8 max-w-[210mm] mx-auto shadow-lg rounded-xl"
   >
     <!-- Header -->
     <div class="text-center border-b-2 border-slate-800 pb-4 mb-5">
@@ -11,7 +11,10 @@
       <div
         class="flex items-center justify-center flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-slate-600"
       >
-        <span v-if="resume.contact.email" class="flex items-center gap-1">
+        <span
+          v-if="resume.contact.email"
+          class="flex items-center gap-1"
+        >
           <svg
             class="w-3.5 h-3.5"
             fill="none"
@@ -27,7 +30,10 @@
           </svg>
           {{ resume.contact.email }}
         </span>
-        <span v-if="resume.contact.phone" class="flex items-center gap-1">
+        <span
+          v-if="resume.contact.phone"
+          class="flex items-center gap-1"
+        >
           <svg
             class="w-3.5 h-3.5"
             fill="none"
@@ -43,7 +49,10 @@
           </svg>
           {{ resume.contact.phone }}
         </span>
-        <span v-if="resume.contact.location" class="flex items-center gap-1">
+        <span
+          v-if="resume.contact.location"
+          class="flex items-center gap-1"
+        >
           <svg
             class="w-3.5 h-3.5"
             fill="none"
@@ -65,8 +74,15 @@
           </svg>
           {{ resume.contact.location }}
         </span>
-        <span v-if="resume.contact.linkedin" class="flex items-center gap-1">
-          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+        <span
+          v-if="resume.contact.linkedin"
+          class="flex items-center gap-1"
+        >
+          <svg
+            class="w-3.5 h-3.5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
             />
@@ -77,17 +93,25 @@
     </div>
 
     <!-- Summary -->
-    <section v-if="resume.summary" class="mb-5">
+    <section
+      v-if="resume.summary"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-2"
       >
         Professional Summary
       </h2>
-      <p class="text-sm text-slate-700 leading-relaxed">{{ resume.summary }}</p>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        {{ resume.summary }}
+      </p>
     </section>
 
     <!-- Experience -->
-    <section v-if="resume.experience.length" class="mb-5">
+    <section
+      v-if="resume.experience.length"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-3"
       >
@@ -100,15 +124,15 @@
       >
         <div class="flex justify-between items-start">
           <div>
-            <h3 class="text-sm font-bold text-slate-800">{{ exp.title }}</h3>
+            <h3 class="text-sm font-bold text-slate-800">
+              {{ exp.title }}
+            </h3>
             <p class="text-sm text-slate-600 italic">
               {{ exp.company
               }}<span v-if="exp.location"> — {{ exp.location }}</span>
             </p>
           </div>
-          <span class="text-xs text-slate-500 whitespace-nowrap"
-            >{{ exp.startDate }} – {{ exp.endDate }}</span
-          >
+          <span class="text-xs text-slate-500 whitespace-nowrap">{{ exp.startDate }} – {{ exp.endDate }}</span>
         </div>
         <ul class="mt-1.5 space-y-1">
           <li
@@ -124,16 +148,25 @@
     </section>
 
     <!-- Education -->
-    <section v-if="resume.education.length" class="mb-5">
+    <section
+      v-if="resume.education.length"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-3"
       >
         Education
       </h2>
-      <div v-for="(edu, i) in resume.education" :key="i" class="mb-3 last:mb-0">
+      <div
+        v-for="(edu, i) in resume.education"
+        :key="i"
+        class="mb-3 last:mb-0"
+      >
         <div class="flex justify-between items-start">
           <div>
-            <h3 class="text-sm font-bold text-slate-800">{{ edu.degree }}</h3>
+            <h3 class="text-sm font-bold text-slate-800">
+              {{ edu.degree }}
+            </h3>
             <p class="text-sm text-slate-600 italic">
               {{ edu.institution
               }}<span v-if="edu.location"> — {{ edu.location }}</span>
@@ -143,43 +176,63 @@
             edu.graduationDate
           }}</span>
         </div>
-        <p v-if="edu.gpa" class="text-xs text-slate-500 mt-0.5">
+        <p
+          v-if="edu.gpa"
+          class="text-xs text-slate-500 mt-0.5"
+        >
           GPA: {{ edu.gpa }}
         </p>
       </div>
     </section>
 
     <!-- Skills -->
-    <section v-if="resume.skills.length" class="mb-5">
+    <section
+      v-if="resume.skills.length"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-2"
       >
         Technical Skills
       </h2>
-      <p class="text-sm text-slate-700">{{ resume.skills.join(" • ") }}</p>
+      <p class="text-sm text-slate-700">
+        {{ resume.skills.join(" • ") }}
+      </p>
     </section>
 
     <!-- Projects -->
-    <section v-if="resume.projects.length" class="mb-5">
+    <section
+      v-if="resume.projects.length"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-3"
       >
         Projects
       </h2>
-      <div v-for="(proj, i) in resume.projects" :key="i" class="mb-3 last:mb-0">
+      <div
+        v-for="(proj, i) in resume.projects"
+        :key="i"
+        class="mb-3 last:mb-0"
+      >
         <h3 class="text-sm font-bold text-slate-800">
           {{ proj.name }}
           <span
             v-if="proj.technologies.length"
             class="font-normal text-slate-500"
           >
-            | {{ proj.technologies.join(", ") }}</span
-          >
+            | {{ proj.technologies.join(", ") }}</span>
         </h3>
-        <p v-if="proj.description" class="text-sm text-slate-600">
+        <p
+          v-if="proj.description"
+          class="text-sm text-slate-600"
+        >
           {{ proj.description }}
         </p>
-        <ul v-if="proj.bullets.length" class="mt-1 space-y-0.5">
+        <ul
+          v-if="proj.bullets.length"
+          class="mt-1 space-y-0.5"
+        >
           <li
             v-for="(b, j) in proj.bullets"
             :key="j"
@@ -193,7 +246,10 @@
     </section>
 
     <!-- Certifications -->
-    <section v-if="resume.certifications.length" class="mb-5">
+    <section
+      v-if="resume.certifications.length"
+      class="mb-5"
+    >
       <h2
         class="text-sm font-bold text-slate-900 uppercase tracking-widest border-b border-slate-300 pb-1 mb-2"
       >
@@ -204,9 +260,7 @@
         :key="i"
         class="flex justify-between text-sm mb-1"
       >
-        <span class="text-slate-700"
-          ><strong>{{ cert.name }}</strong> — {{ cert.issuer }}</span
-        >
+        <span class="text-slate-700"><strong>{{ cert.name }}</strong> — {{ cert.issuer }}</span>
         <span class="text-slate-500 text-xs">{{ cert.date }}</span>
       </div>
     </section>
@@ -218,15 +272,17 @@
       >
         Languages
       </h2>
-      <p class="text-sm text-slate-700">{{ resume.languages.join(" • ") }}</p>
+      <p class="text-sm text-slate-700">
+        {{ resume.languages.join(" • ") }}
+      </p>
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { StructuredResume } from "~/types";
+import type { StructuredResume } from '~/types'
 
 defineProps<{
-  resume: StructuredResume;
-}>();
+  resume: StructuredResume
+}>()
 </script>
