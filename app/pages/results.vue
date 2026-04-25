@@ -275,7 +275,7 @@
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
           <pre class="whitespace-pre-wrap text-sm text-slate-300 font-mono max-h-96 overflow-auto">{{ store.originalResumeText }}</pre>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
