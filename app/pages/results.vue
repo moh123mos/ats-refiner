@@ -11,7 +11,10 @@
           class="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors duration-200"
           @click="navigateTo('/')"
         >
-          <UIcon name="i-lucide-arrow-left" class="w-4 h-4" />
+          <UIcon
+            name="i-lucide-arrow-left"
+            class="w-4 h-4"
+          />
           New Analysis
         </button>
         <h2 class="text-sm font-semibold text-slate-300 hidden sm:block">
@@ -32,21 +35,35 @@
         <div
           class="w-20 h-20 rounded-2xl bg-slate-800/50 flex items-center justify-center mx-auto mb-4"
         >
-          <UIcon name="i-lucide-file-search" class="w-10 h-10 text-slate-600" />
+          <UIcon
+            name="i-lucide-file-search"
+            class="w-10 h-10 text-slate-600"
+          />
         </div>
         <h3 class="text-xl font-semibold text-slate-300 mb-2">
           No Analysis Available
         </h3>
-        <p class="text-slate-500 mb-6">Upload your resume to get started</p>
-        <UButton color="primary" @click="navigateTo('/')">
-          <UIcon name="i-lucide-upload" class="w-4 h-4 mr-2" />
+        <p class="text-slate-500 mb-6">
+          Upload your resume to get started
+        </p>
+        <UButton
+          color="primary"
+          @click="navigateTo('/')"
+        >
+          <UIcon
+            name="i-lucide-upload"
+            class="w-4 h-4 mr-2"
+          />
           Upload Resume
         </UButton>
       </div>
     </div>
 
     <!-- Results Content -->
-    <div v-else class="max-w-7xl mx-auto px-4 py-8">
+    <div
+      v-else
+      class="max-w-7xl mx-auto px-4 py-8"
+    >
       <!-- Score + Keywords Row -->
       <div class="grid lg:grid-cols-3 gap-6 mb-8 animate-fade-in-up">
         <!-- ATS Score Card -->
@@ -59,7 +76,11 @@
             ATS Score
           </h3>
           <div class="score-ring">
-            <svg width="140" height="140" viewBox="0 0 140 140">
+            <svg
+              width="140"
+              height="140"
+              viewBox="0 0 140 140"
+            >
               <circle
                 cx="70"
                 cy="70"
@@ -78,8 +99,8 @@
                 stroke-linecap="round"
                 :stroke-dasharray="circumference"
                 :stroke-dashoffset="
-                  circumference -
-                  circumference * (store.analysis.atsScore / 100)
+                  circumference
+                    - circumference * (store.analysis.atsScore / 100)
                 "
                 style="
                   transition: stroke-dashoffset 1.5s
@@ -87,11 +108,16 @@
                 "
               />
             </svg>
-            <div class="score-value" :style="{ color: scoreColor }">
+            <div
+              class="score-value"
+              :style="{ color: scoreColor }"
+            >
               {{ store.analysis.atsScore }}
             </div>
           </div>
-          <p class="text-xs text-slate-500 mt-2">out of 100</p>
+          <p class="text-xs text-slate-500 mt-2">
+            out of 100
+          </p>
           <p
             class="text-xs mt-2 px-3 py-1 rounded-full"
             :class="scoreLabel.class"
@@ -103,7 +129,7 @@
         <!-- Matched Keywords -->
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-2 h-2 rounded-full bg-green-400"></div>
+            <div class="w-2 h-2 rounded-full bg-green-400" />
             <h3
               class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
             >
@@ -130,7 +156,7 @@
         <!-- Missing Keywords -->
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
           <div class="flex items-center gap-2 mb-4">
-            <div class="w-2 h-2 rounded-full bg-amber-400"></div>
+            <div class="w-2 h-2 rounded-full bg-amber-400" />
             <h3
               class="text-xs font-semibold text-slate-400 uppercase tracking-widest"
             >
@@ -166,7 +192,10 @@
             <div
               class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center"
             >
-              <UIcon name="i-lucide-lightbulb" class="w-4 h-4 text-blue-400" />
+              <UIcon
+                name="i-lucide-lightbulb"
+                class="w-4 h-4 text-blue-400"
+              />
             </div>
             <h3 class="text-sm font-semibold text-slate-300">
               Improvement Suggestions
@@ -202,7 +231,9 @@
                 class="w-4 h-4 text-red-400"
               />
             </div>
-            <h3 class="text-sm font-semibold text-slate-300">Warnings</h3>
+            <h3 class="text-sm font-semibold text-slate-300">
+              Warnings
+            </h3>
           </div>
           <ul class="space-y-2">
             <li
@@ -220,24 +251,29 @@
         </div>
       </div>
 
-      <!-- Resume Preview Section -->
-      <!-- <div class="animate-fade-in-up delay-300">
+      <!-- Original Resume Preview -->
+      <div class="animate-fade-in-up delay-300">
         <div class="flex items-center gap-3 mb-5">
           <div
-            class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center"
+            class="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center"
           >
-            <UIcon name="i-lucide-file-text" class="w-5 h-5 text-green-400" />
+            <UIcon
+              name="i-lucide-file-text"
+              class="w-5 h-5 text-slate-400"
+            />
           </div>
           <div>
-            <h3 class="text-lg font-bold text-slate-200">Improved Resume</h3>
+            <h3 class="text-lg font-bold text-slate-200">
+              Original Resume
+            </h3>
             <p class="text-xs text-slate-500">
-              Choose a template and download your optimized resume
+              The uploaded resume for reference
             </p>
           </div>
         </div>
 
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
-          <ResumePreview :resume="store.analysis.structuredResume" />
+          <pre class="whitespace-pre-wrap text-sm text-slate-300 font-mono max-h-96 overflow-auto">{{ store.originalResumeText }}</pre>
         </div>
       </div> -->
     </div>
@@ -245,25 +281,25 @@
 </template>
 
 <script setup lang="ts">
-import { useSessionStore } from "~/stores/session";
+import { useSessionStore } from '~/stores/session'
 
-const store = useSessionStore();
+const store = useSessionStore()
 
-const circumference = 2 * Math.PI * 60;
+const circumference = 2 * Math.PI * 60
 
 const scoreColor = computed(() => {
-  const score = store.analysis?.atsScore ?? 0;
-  if (score >= 80) return "#22c55e";
-  if (score >= 60) return "#f59e0b";
-  return "#ef4444";
-});
+  const score = store.analysis?.atsScore ?? 0
+  if (score >= 80) return '#22c55e'
+  if (score >= 60) return '#f59e0b'
+  return '#ef4444'
+})
 
 const scoreLabel = computed(() => {
-  const score = store.analysis?.atsScore ?? 0;
+  const score = store.analysis?.atsScore ?? 0
   if (score >= 80)
-    return { text: "Excellent", class: "bg-green-500/10 text-green-400" };
+    return { text: 'Excellent', class: 'bg-green-500/10 text-green-400' }
   if (score >= 60)
-    return { text: "Good", class: "bg-amber-500/10 text-amber-400" };
-  return { text: "Needs Work", class: "bg-red-500/10 text-red-400" };
-});
+    return { text: 'Good', class: 'bg-amber-500/10 text-amber-400' }
+  return { text: 'Needs Work', class: 'bg-red-500/10 text-red-400' }
+})
 </script>

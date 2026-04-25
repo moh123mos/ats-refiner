@@ -5,14 +5,17 @@
       :class="[
         isDragging
           ? 'border-primary-500 bg-primary-500/10'
-          : 'border-gray-300 dark:border-gray-600 hover:border-primary-400',
+          : 'border-gray-300 dark:border-gray-600 hover:border-primary-400'
       ]"
       @dragover.prevent="isDragging = true"
       @dragleave.prevent="isDragging = false"
       @drop.prevent="handleDrop"
     >
       <div class="space-y-4">
-        <UIcon name="i-lucide-upload" class="w-12 h-12 mx-auto text-gray-400" />
+        <UIcon
+          name="i-lucide-upload"
+          class="w-12 h-12 mx-auto text-gray-400"
+        />
         <div>
           <p class="text-lg font-medium text-gray-700 dark:text-gray-200">
             Drop your resume here
@@ -21,7 +24,10 @@
             PDF or DOCX (max 10MB)
           </p>
         </div>
-        <UButton variant="outline" @click="openFilePicker">
+        <UButton
+          variant="outline"
+          @click="openFilePicker"
+        >
           Browse Files
         </UButton>
         <input
@@ -30,7 +36,7 @@
           accept=".pdf,.docx"
           class="hidden"
           @change="handleFileSelect"
-        />
+        >
       </div>
     </div>
 
@@ -38,7 +44,10 @@
       v-if="selectedFile"
       class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg"
     >
-      <UIcon name="i-lucide-file-text" class="w-8 h-8 text-primary-500" />
+      <UIcon
+        name="i-lucide-file-text"
+        class="w-8 h-8 text-primary-500"
+      />
       <div class="flex-1 min-w-0">
         <p class="font-medium truncate">
           {{ selectedFile.name }}
@@ -47,8 +56,15 @@
           {{ formatSize(selectedFile.size) }}
         </p>
       </div>
-      <UButton variant="ghost" color="error" @click="clearFile">
-        <UIcon name="i-lucide-x" class="w-4 h-4" />
+      <UButton
+        variant="ghost"
+        color="error"
+        @click="clearFile"
+      >
+        <UIcon
+          name="i-lucide-x"
+          class="w-4 h-4"
+        />
       </UButton>
     </div>
 
@@ -95,183 +111,181 @@
       >
         <span v-if="store.error.code">Code: {{ store.error.code }}</span>
         <span v-if="store.error.code && store.error.requestId"> - </span>
-        <span v-if="store.error.requestId"
-          >Reference: {{ store.error.requestId }}</span
-        >
+        <span v-if="store.error.requestId">Reference: {{ store.error.requestId }}</span>
       </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useSessionStore } from "~/stores/session";
-import type { AnalyzeResponse, ApiErrorDetails, UploadResponse } from "~/types";
+import { useSessionStore } from '~/stores/session'
+import type { AnalyzeResponse, ApiErrorDetails, UploadResponse } from '~/types'
 
 interface UiError {
-  message: string;
-  code?: string;
-  hint?: string;
-  requestId?: string;
+  message: string
+  code?: string
+  hint?: string
+  requestId?: string
 }
 
 const ERROR_HINTS: Record<string, string> = {
   PARSE_ERROR:
-    "We could not read this file format safely. Please re-export your resume and try again.",
-  PDF_PASSWORD_PROTECTED: "Unlock the PDF first, then upload it again.",
+    'We could not read this file format safely. Please re-export your resume and try again.',
+  PDF_PASSWORD_PROTECTED: 'Unlock the PDF first, then upload it again.',
   INVALID_PDF_CONTENT:
-    "The PDF structure looks invalid. Re-export the file and retry.",
+    'The PDF structure looks invalid. Re-export the file and retry.',
   EMPTY_CONTENT:
-    "The file has little or no readable text. Use a text-based PDF or DOCX.",
+    'The file has little or no readable text. Use a text-based PDF or DOCX.',
   INVALID_MIME:
-    "The file MIME type is not supported. Upload a valid PDF or DOCX.",
-  UNSUPPORTED_TYPE: "Only PDF and DOCX files are supported in this MVP.",
-  FILE_TOO_LARGE: "The file is larger than 10MB. Upload a smaller file.",
-  ANALYSIS_ERROR: "Analysis failed. Please retry in a moment.",
-};
+    'The file MIME type is not supported. Upload a valid PDF or DOCX.',
+  UNSUPPORTED_TYPE: 'Only PDF and DOCX files are supported in this MVP.',
+  FILE_TOO_LARGE: 'The file is larger than 10MB. Upload a smaller file.',
+  ANALYSIS_ERROR: 'Analysis failed. Please retry in a moment.'
+}
 
 function toUiError(payload: {
-  message: string;
-  errorCode?: string;
-  details?: ApiErrorDetails;
+  message: string
+  errorCode?: string
+  details?: ApiErrorDetails
 }): UiError {
   return {
     message:
-      payload.message || "Something went wrong while processing your request.",
+      payload.message || 'Something went wrong while processing your request.',
     code: payload.errorCode,
     hint:
-      payload.details?.hint ||
-      (payload.errorCode ? ERROR_HINTS[payload.errorCode] : undefined),
-    requestId: payload.details?.requestId,
-  };
+      payload.details?.hint
+      || (payload.errorCode ? ERROR_HINTS[payload.errorCode] : undefined),
+    requestId: payload.details?.requestId
+  }
 }
 
 function toNetworkError(error: unknown): UiError {
   return {
-    message: "Request failed before the server could complete processing.",
+    message: 'Request failed before the server could complete processing.',
     hint:
       error instanceof Error
         ? error.message
-        : "Please check your network and try again.",
-  };
+        : 'Please check your network and try again.'
+  }
 }
 
-const store = useSessionStore();
-const fileInput = ref<HTMLInputElement>();
-const selectedFile = ref<File | null>(null);
-const isDragging = ref(false);
-const jobDescription = ref("");
+const store = useSessionStore()
+const fileInput = ref<HTMLInputElement>()
+const selectedFile = ref<File | null>(null)
+const isDragging = ref(false)
+const jobDescription = ref('')
 
 const isProcessing = computed(
   () =>
-    store.status === "uploading" ||
-    store.status === "parsing" ||
-    store.status === "analyzing",
-);
+    store.status === 'uploading'
+    || store.status === 'parsing'
+    || store.status === 'analyzing'
+)
 
 const canSubmit = computed(
   () =>
-    selectedFile.value !== null &&
-    jobDescription.value.trim().length >= 20 &&
-    !isProcessing.value,
-);
+    selectedFile.value !== null
+    && jobDescription.value.trim().length >= 20
+    && !isProcessing.value
+)
 
 const submitButtonText = computed(() => {
   switch (store.status) {
-    case "uploading":
-      return "Uploading...";
-    case "parsing":
-      return "Parsing...";
-    case "analyzing":
-      return "Analyzing...";
-    case "ready":
-      return "Analyze";
+    case 'uploading':
+      return 'Uploading...'
+    case 'parsing':
+      return 'Parsing...'
+    case 'analyzing':
+      return 'Analyzing...'
+    case 'ready':
+      return 'Analyze'
     default:
-      return "Analyze Resume";
+      return 'Analyze Resume'
   }
-});
+})
 
 function openFilePicker() {
-  fileInput.value?.click();
+  fileInput.value?.click()
 }
 
 function handleFileSelect(event: Event) {
-  const input = event.target as HTMLInputElement;
+  const input = event.target as HTMLInputElement
   if (input.files?.[0]) {
-    selectedFile.value = input.files[0];
+    selectedFile.value = input.files[0]
   }
 }
 
 function handleDrop(event: DragEvent) {
-  isDragging.value = false;
-  const files = event.dataTransfer?.files;
+  isDragging.value = false
+  const files = event.dataTransfer?.files
   if (files?.[0]) {
-    const file = files[0];
-    if (file.name.endsWith(".pdf") || file.name.endsWith(".docx")) {
-      selectedFile.value = file;
+    const file = files[0]
+    if (file.name.endsWith('.pdf') || file.name.endsWith('.docx')) {
+      selectedFile.value = file
     }
   }
 }
 
 function clearFile() {
-  selectedFile.value = null;
+  selectedFile.value = null
   if (fileInput.value) {
-    fileInput.value.value = "";
+    fileInput.value.value = ''
   }
 }
 
 function formatSize(bytes: number): string {
-  if (bytes < 1024) return bytes + " B";
-  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + " KB";
-  return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+  if (bytes < 1024) return bytes + ' B'
+  if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
 }
 
 async function submitAnalysis() {
-  if (!selectedFile.value || !jobDescription.value.trim()) return;
+  if (!selectedFile.value || !jobDescription.value.trim()) return
 
-  store.setStatus("uploading");
-  store.setError(null);
+  store.setStatus('uploading')
+  store.setError(null)
 
   try {
-    const formData = new FormData();
-    formData.append("file", selectedFile.value);
+    const formData = new FormData()
+    formData.append('file', selectedFile.value)
 
-    const uploadRes = await $fetch<UploadResponse>("/api/upload", {
-      method: "POST",
-      body: formData,
-    });
+    const uploadRes = await $fetch<UploadResponse>('/api/upload', {
+      method: 'POST',
+      body: formData
+    })
 
     if (!uploadRes.success || !uploadRes.data) {
-      store.setError(toUiError(uploadRes));
-      return;
+      store.setError(toUiError(uploadRes))
+      return
     }
 
     store.setSession({
       sessionId: uploadRes.data.sessionId,
       fileName: uploadRes.data.fileName,
-      fileType: uploadRes.data.fileType as "pdf" | "docx",
-      textLength: uploadRes.data.textLength,
-    });
+      fileType: uploadRes.data.fileType as 'pdf' | 'docx',
+      textLength: uploadRes.data.textLength
+    })
 
-    store.setJobDescription(jobDescription.value.trim());
-    store.setStatus("analyzing");
+    store.setJobDescription(jobDescription.value.trim())
+    store.setStatus('analyzing')
 
-    const analyzeRes = await $fetch<AnalyzeResponse>("/api/analyze", {
-      method: "POST",
+    const analyzeRes = await $fetch<AnalyzeResponse>('/api/analyze', {
+      method: 'POST',
       body: {
         sessionId: uploadRes.data.sessionId,
-        jobDescription: jobDescription.value.trim(),
-      },
-    });
+        jobDescription: jobDescription.value.trim()
+      }
+    })
 
     if (!analyzeRes.success || !analyzeRes.data) {
-      store.setError(toUiError(analyzeRes));
-      return;
+      store.setError(toUiError(analyzeRes))
+      return
     }
 
-    store.setAnalysis(analyzeRes.data);
-    navigateTo("/results");
+    store.setAnalysis(analyzeRes.data)
+    navigateTo('/results')
   } catch (error) {
-    store.setError(toNetworkError(error));
+    store.setError(toNetworkError(error))
   }
 }
 </script>
