@@ -1,64 +1,53 @@
-# Nuxt Starter Template
+# ATS Refiner 🚀
 
-[![Nuxt UI](https://img.shields.io/badge/Made%20with-Nuxt%20UI-00DC82?logo=nuxt&labelColor=020420)](https://ui.nuxt.com)
+ATS Refiner is an AI-powered resume optimization tool built with Nuxt 3. It helps job seekers analyze their resumes against specific job descriptions to identify keyword gaps and improve their ATS (Applicant Tracking System) scores.
 
-Use this template to get started with [Nuxt UI](https://ui.nuxt.com) quickly.
+## 🛠️ Tech Stack
+- **Framework:** Nuxt 4 (Vue 3)
+- **State Management:** Pinia
+- **Styling:** Tailwind CSS / Nuxt UI
+- **AI Engine:** Google Gemini AI (with Mock fallback)
+- **Testing:** Vitest & Playwright
 
-- [Live demo](https://starter-template.nuxt.dev/)
-- [Documentation](https://ui.nuxt.com/docs/getting-started/installation/nuxt)
+## 🧪 Testing Suite (Academic Focus)
+This project was developed with a heavy emphasis on Quality Assurance and Software Testing principles.
 
-<a href="https://starter-template.nuxt.dev/" target="_blank">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png">
-    <img alt="Nuxt Starter Template" src="https://ui.nuxt.com/assets/templates/nuxt/starter-light.png" width="830" height="466">
-  </picture>
-</a>
-
-> The starter template for Vue is on https://github.com/nuxt-ui-templates/starter-vue.
-
-## Quick Start
-
-```bash [Terminal]
-npm create nuxt@latest -- -t ui
-```
-
-## Deploy your own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-name=starter&repository-url=https%3A%2F%2Fgithub.com%2Fnuxt-ui-templates%2Fstarter&demo-image=https%3A%2F%2Fui.nuxt.com%2Fassets%2Ftemplates%2Fnuxt%2Fstarter-dark.png&demo-url=https%3A%2F%2Fstarter-template.nuxt.dev%2F&demo-title=Nuxt%20Starter%20Template&demo-description=A%20minimal%20template%20to%20get%20started%20with%20Nuxt%20UI.)
-
-## Setup
-
-Make sure to install the dependencies:
-
+### 1. Unit Testing (Vitest)
+Tests individual logic units in isolation (Parsing, AI response handling, text extraction).
 ```bash
-pnpm install
+npm test
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### 2. Integration Testing (Pinia)
+Tests the interaction between the frontend state and business logic.
 ```bash
-pnpm dev
+npm test
 ```
 
-## Production
-
-Build the application for production:
-
+### 3. System Testing (Playwright)
+End-to-end browser automation using real test fixtures.
 ```bash
-pnpm build
+# First time setup
+npx playwright install
+
+# Run system tests (Headed mode recommended for demos)
+npx playwright test --headed
 ```
 
-Locally preview production build:
-
+### 4. Code Coverage
+Generates a detailed report of how much code is covered by automated tests.
 ```bash
-pnpm preview
+npm run test:coverage
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📂 Project Structure
+- `app/stores/`: Frontend state management (Integrated tests here).
+- `server/services/`: Core logic for parsing and AI (Unit tests here).
+- `tests/system-flow.spec.ts`: Playwright E2E scenarios.
+- `tests/fixtures/`: Real-world test data (CVs and Job Descriptions).
+- `draft/`: Academic testing reports and presentation drafts.
 
-## Renovate integration
-
-Install [Renovate GitHub app](https://github.com/apps/renovate/installations/select_target) on your repository and you are good to go.
+## 🚀 Getting Started
+1. Install dependencies: `npm install`
+2. Start development server: `npm run dev`
+3. Run the full test suite: `npm test && npm run test:e2e`

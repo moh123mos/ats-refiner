@@ -87,7 +87,7 @@ CRITICAL RULES:
 5. Provide ONLY valid JSON, no explanations or markdown fences`
 }
 
-function parseAIResponse(text: string, input: AIAnalysisInput): AnalysisResult {
+export function parseAIResponse(text: string, input: AIAnalysisInput): AnalysisResult {
   try {
     const jsonMatch = text.match(/\{[\s\S]*\}/)
     if (!jsonMatch) {
@@ -333,7 +333,7 @@ function extractFromResume(text: string): StructuredResume {
   }
 }
 
-function getMockAnalysis(input: AIAnalysisInput): AnalysisResult {
+export function getMockAnalysis(input: AIAnalysisInput): AnalysisResult {
   const jdLower = input.jobDescription.toLowerCase()
   const resumeLower = input.resumeText.toLowerCase()
 
