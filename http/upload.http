@@ -1,0 +1,13 @@
+### Upload resume
+# Select the `local` environment in the REST Client extension and update
+# `resumeFile`, `resumeFileName`, and `resumeContentType` in `rest-client.env.json`.
+# @name uploadResume
+POST {{baseUrl}}/api/upload
+Content-Type: multipart/form-data; boundary=----ATSRefinerUploadBoundary
+
+------ATSRefinerUploadBoundary
+Content-Disposition: form-data; name="file"; filename="{{resumeFileName}}"
+Content-Type: {{resumeContentType}}
+
+< {{resumeFile}}
+------ATSRefinerUploadBoundary--

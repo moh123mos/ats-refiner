@@ -1,5 +1,5 @@
 import { generateSessionId, createSession, updateSession } from '../services/storage/session'
-import { parseDocument, detectFileType } from '../services/parsing/parser'
+import { parseDocument, detectFileType, getPdfParserDiagnostics } from '../services/parsing/parser'
 import { cleanResumeText } from '../services/cleaning/cleaner'
 import type { UploadResponse } from '../../app/types'
 
@@ -120,11 +120,14 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     const requestId = crypto.randomUUID()
     const parsedError = classifyParseError(error, fileType)
+    const pdfParserDiagnostics = fileType === 'pdf' ? getPdfParserDiagnostics() : null
 
     console.error(`[upload:${requestId}] Upload failed`, {
       fileName: file.filename,
       fileType,
-      reason: error instanceof Error ? error.message : String(error)
+      reason: error instanceof Error ? error.message : String(error),
+      nodeVersion: process.version,
+      pdfParser: pdfParserDiagnostics
     })
 
     return {

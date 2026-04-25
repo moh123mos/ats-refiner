@@ -1,0 +1,15 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:3000",
+      "resumeFile": "C:/replace/with/absolute/path/to/resume.pdf",
+      "resumeFileName": "resume.pdf",
+      "resumeContentType": "application/pdf",
+      "jobDescription": "Paste the target job description here. It must be at least 20 characters long.",
+      "sessionId": "replace-after-upload"
+    },
+    "local": {
+      "baseUrl": "http://localhost:3000"
+    }
+  }
+}

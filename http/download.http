@@ -1,0 +1,4 @@
+### Download improved resume with a manual session id
+# Select the `local` environment in the REST Client extension and set
+# `sessionId` in `rest-client.env.json`.
+GET {{baseUrl}}/api/download/{{sessionId}}
