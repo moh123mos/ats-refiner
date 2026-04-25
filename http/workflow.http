@@ -1,0 +1,28 @@
+### Full workflow: upload -> analyze -> download
+# Select the `local` environment in the REST Client extension and update
+# the variables in `rest-client.env.json` before running these requests.
+
+### 1) Upload resume
+# @name uploadResume
+POST {{baseUrl}}/api/upload
+Content-Type: multipart/form-data; boundary=----ATSRefinerUploadBoundary
+
+------ATSRefinerUploadBoundary
+Content-Disposition: form-data; name="file"; filename="{{resumeFileName}}"
+Content-Type: {{resumeContentType}}
+
+< {{resumeFile}}
+------ATSRefinerUploadBoundary--
+
+### 2) Analyze uploaded resume
+# @name analyzeResume
+POST {{baseUrl}}/api/analyze
+Content-Type: application/json
+
+{
+  "sessionId": "{{uploadResume.response.body.$.data.sessionId}}",
+  "jobDescription": "{{jobDescription}}"
+}
+
+### 3) Download improved resume text
+GET {{baseUrl}}/api/download/{{uploadResume.response.body.$.data.sessionId}}
