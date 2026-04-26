@@ -1,5 +1,5 @@
 import { getSession } from '../../services/storage/session'
-import type { DownloadResponse } from '~/types'
+import type { DownloadResponse } from '../../app/types'
 
 export default defineEventHandler(async (event) => {
   const sessionId = getRouterParam(event, 'sessionId')
