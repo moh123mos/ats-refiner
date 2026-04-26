@@ -1,4 +1,4 @@
-import type { SessionState } from '../../app/types'
+import type { SessionState } from '~/types'
 
 const sessions = new Map<string, SessionState>()
 
