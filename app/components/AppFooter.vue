@@ -72,17 +72,9 @@
 
         <!-- Copyright -->
         <p class="text-xs text-slate-600">
-          ©<span v-if="currentYear !== null"> {{ currentYear }}</span> ATS Refiner. All rights reserved.
+          © {{ new Date().getFullYear() }} ATS Refiner. All rights reserved.
         </p>
       </div>
     </div>
   </footer>
 </template>
-
-<script setup lang="ts">
-const currentYear = shallowRef<number | null>(null)
-
-onMounted(() => {
-  currentYear.value = new Date().getFullYear()
-})
-</script>
