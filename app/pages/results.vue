@@ -8,7 +8,7 @@
         class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between"
       >
         <button
-          class="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors duration-200"
+          class="flex items-center gap-2 text-sm text-slate-400 hover:text-green-400 transition-colors duration-200 cursor-pointer"
           @click="navigateTo('/')"
         >
           <UIcon
@@ -182,7 +182,7 @@
       </div>
 
       <!-- Suggestions + Warnings Row -->
-      <div class="grid lg:grid-cols-2 gap-6 mb-8 animate-fade-in-up delay-200">
+      <div class="grid lg:grid-cols-1 gap-6 mb-8 animate-fade-in-up delay-200">
         <!-- Suggestions -->
         <div
           v-if="store.analysis.rewriteSuggestions.length"
@@ -218,7 +218,7 @@
         </div>
 
         <!-- Warnings -->
-        <div
+        <!-- <div
           v-if="store.analysis.warnings.length"
           class="glass rounded-2xl p-6 border border-red-500/20"
         >
@@ -248,11 +248,11 @@
               <span>{{ warning }}</span>
             </li>
           </ul>
-        </div>
+        </div> -->
       </div>
 
       <!-- Original Resume Preview -->
-      <div class="animate-fade-in-up delay-300">
+      <!-- <div class="animate-fade-in-up delay-300">
         <div class="flex items-center gap-3 mb-5">
           <div
             class="w-10 h-10 rounded-xl bg-slate-700/50 flex items-center justify-center"
