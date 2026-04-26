@@ -208,7 +208,7 @@
               class="flex items-start gap-3 text-sm"
             >
               <span
-                class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5"
+                class="w-5 h-5 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5"
               >
                 {{ index + 1 }}
               </span>
@@ -243,7 +243,7 @@
             >
               <UIcon
                 name="i-lucide-alert-circle"
-                class="w-4 h-4 flex-shrink-0 mt-0.5"
+                class="w-4 h-4 shrink-0 mt-0.5"
               />
               <span>{{ warning }}</span>
             </li>
@@ -275,7 +275,7 @@
         <div class="glass rounded-2xl p-6 border border-slate-700/50">
           <pre class="whitespace-pre-wrap text-sm text-slate-300 font-mono max-h-96 overflow-auto">{{ store.originalResumeText }}</pre>
         </div>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
