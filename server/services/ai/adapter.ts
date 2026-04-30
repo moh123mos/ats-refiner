@@ -1,7 +1,10 @@
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import type { AnalysisResult, StructuredResume } from '@/types'
 
-const apiKey = process.env.GEMINI_API_KEY || process.env.NUXT_GEMINI_API_KEY || ''
+const forceMockAI = process.env.MOCK_AI === 'true'
+const apiKey = forceMockAI
+  ? ''
+  : process.env.GEMINI_API_KEY || process.env.NUXT_GEMINI_API_KEY || ''
 
 let genAI: GoogleGenerativeAI | null = null
 if (apiKey) {

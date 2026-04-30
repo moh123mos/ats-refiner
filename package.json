@@ -11,7 +11,9 @@
     "typecheck": "nuxt typecheck",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "test:performance": "playwright test --config=playwright.performance.config.ts",
+    "test:concurrency": "node scripts/concurrency-test.mjs"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
