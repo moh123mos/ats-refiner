@@ -1,0 +1,26 @@
+Job Title: Product Manager
+Location: Remote / Hybrid
+Experience Level: Mid-Level (3-5 years)
+
+About the Role:
+We are looking for a Product Manager to define product strategy, prioritize roadmap initiatives, and work closely with engineering, design, marketing, and customer success teams to deliver valuable software products.
+
+Responsibilities:
+Own roadmap planning and backlog prioritization
+Translate customer research and market insights into clear product requirements
+Collaborate with engineers and designers to ship high-quality features
+Define success metrics and use analytics to evaluate product performance
+Coordinate launches with marketing, sales, and support teams
+Communicate product direction to stakeholders and leadership
+
+Required Qualifications:
+3+ years of product management experience for SaaS or software products
+Experience writing user stories, product requirements, and acceptance criteria
+Strong understanding of agile delivery and cross-functional collaboration
+Ability to use data, customer feedback, and business goals to make tradeoffs
+Excellent written and verbal communication skills
+
+Preferred Qualifications:
+Experience with Jira, Figma, analytics tools, and A/B testing
+Technical background or experience working closely with API and platform teams
+Familiarity with go-to-market planning and customer discovery

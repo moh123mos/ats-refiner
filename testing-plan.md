@@ -61,6 +61,13 @@ This document outlines the testing strategy for the ATS Refiner project, designe
 3. Fix the code.
 4. Run the full suite to ensure no other features broke.
 
+### F. Performance Payload Testing
+**Focus:** Handling large file uploads (> 10MB) and massive JSON payloads (huge job descriptions).
+**Tool:** Vitest
+**Key Test Cases:**
+- `/api/upload`: Graceful failure when uploading files exceeding 10MB (`FILE_TOO_LARGE` or `413`).
+- `/api/analyze`: Rejects massive job descriptions (e.g., > 20,000 chars) with `INVALID_JD` or `PAYLOAD_TOO_LARGE` without crashing the server.
+
 ## 3. Environment & Tools
 | Level | Tool |
 | :--- | :--- |
