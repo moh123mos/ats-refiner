@@ -25,6 +25,15 @@ export default defineEventHandler(async (event) => {
     } as AnalyzeResponse
   }
 
+  if (jobDescription.trim().length > 20000) {
+    return {
+      success: false,
+      message: 'Job description is too large (maximum 20,000 characters)',
+      data: null,
+      errorCode: 'PAYLOAD_TOO_LARGE'
+    } as AnalyzeResponse
+  }
+
   const session = getSession(sessionId)
   if (!session) {
     return {

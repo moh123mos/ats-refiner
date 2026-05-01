@@ -343,10 +343,33 @@ function openFilePicker() {
   fileInput.value?.click()
 }
 
+function isSupportedResumeFile(file: File): boolean {
+  return file.name.toLowerCase().endsWith('.pdf') || file.name.toLowerCase().endsWith('.docx')
+}
+
+function rejectUnsupportedFile() {
+  selectedFile.value = null
+  store.setError(
+    toUiError({
+      message: 'Unsupported file type. Please upload PDF or DOCX.',
+      errorCode: 'UNSUPPORTED_TYPE'
+    })
+  )
+  if (fileInput.value) {
+    fileInput.value.value = ''
+  }
+}
+
 function handleFileSelect(event: Event) {
   const input = event.target as HTMLInputElement
   if (input.files?.[0]) {
-    selectedFile.value = input.files[0]
+    const file = input.files[0]
+    if (!isSupportedResumeFile(file)) {
+      rejectUnsupportedFile()
+      return
+    }
+    store.setError(null)
+    selectedFile.value = file
   }
 }
 
@@ -355,9 +378,12 @@ function handleDrop(event: DragEvent) {
   const files = event.dataTransfer?.files
   if (files?.[0]) {
     const file = files[0]
-    if (file.name.endsWith('.pdf') || file.name.endsWith('.docx')) {
-      selectedFile.value = file
+    if (!isSupportedResumeFile(file)) {
+      rejectUnsupportedFile()
+      return
     }
+    store.setError(null)
+    selectedFile.value = file
   }
 }
 
