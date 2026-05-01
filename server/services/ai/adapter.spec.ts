@@ -3,15 +3,15 @@ import { parseAIResponse, getMockAnalysis } from './adapter'
 
 describe('AI Adapter Service', () => {
   const mockInput = {
-    resumeText: "John Doe\nJavaScript developer with React experience.",
-    jobDescription: 'Looking for a Senior JavaScript developer with React and Node.js skills.'
+    resumeText: "John Doe\nJavaScript developer with Vue experience.",
+    jobDescription: 'Looking for a Senior JavaScript developer with Vue and Node.js skills.'
   }
 
   describe('parseAIResponse', () => {
     it('should correctly parse valid JSON response', () => {
       const mockAiText = JSON.stringify({
         atsScore: 85,
-        matchedKeywords: ['JavaScript', 'React'],
+        matchedKeywords: ['JavaScript', 'Vue'],
         missingKeywords: ['Node.js'],
         rewriteSuggestions: ['Add Node.js projects'],
         improvedResumeText: 'Improved text...',

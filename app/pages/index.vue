@@ -184,7 +184,7 @@
           <UTextarea
             v-model="jobDescription"
             placeholder="Paste the job description here to get tailored recommendations..."
-            :rows="5"
+            :rows="15"
             :disabled="store.status === 'analyzing'"
             :ui="{
               root: '!inline-block w-full',
