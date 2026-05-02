@@ -4,7 +4,7 @@ import { performance } from 'node:perf_hooks'
 
 const PORT = Number(process.env.CONCURRENCY_PORT || 3002)
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`
-const LEVELS = (process.env.CONCURRENCY_LEVELS || '1,2,5,10,20')
+const LEVELS = (process.env.CONCURRENCY_LEVELS || '1,2,5,10,20,500,1000')
   .split(',')
   .map(value => Number(value.trim()))
   .filter(Number.isFinite)

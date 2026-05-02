@@ -5,7 +5,9 @@ export interface ParsedDocument {
   pageCount?: number
 }
 
-
+/**
+ * Parses a PDF document from a buffer and returns the extracted text and page count.
+ */
 export async function parsePdf(buffer: Buffer): Promise<ParsedDocument> {
   let parser:  { getText: () => Promise<{ text: string, total?: number }>, destroy: () => Promise<void> } | null = null
 
@@ -29,6 +31,9 @@ export async function parsePdf(buffer: Buffer): Promise<ParsedDocument> {
   }
 }
 
+/**
+ * Parses a DOCX document from a buffer and returns the extracted text.
+ */
 export async function parseDocx(buffer: Buffer): Promise<ParsedDocument> {
   try {
     const result = await mammoth.extractRawText({ buffer })
